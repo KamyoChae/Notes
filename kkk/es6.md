@@ -67,4 +67,17 @@ Person.call(window, "window")
  max(1,2)
  结果 1 1 / 2 2 / 44 1 / 44 66
  
+ 如果使用ES6的赋值表达
+  function max(num1 = 1, num2){ 
+    console.log(num1, arguments[0])
+    console.log(num2, arguments[1])
+    num1 = 44
+    console.log(num1, arguments[0])
+    arguments[0] = 66
+    console.log(num1, arguments[0])
+ }
+ max(1,2)
+ 结果 1 1 / 2 2 / 44 1 / 44 66
+ 竟然与ES5严格模式一模一样的结果！！
+ 
  ```
