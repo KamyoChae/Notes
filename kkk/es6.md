@@ -40,4 +40,31 @@ Person.call(window, "window")
  }
  在该函数中 不传值则会默认this.name = none
  注意：当值绝对等于undefined的时候才会走默认值
+ 
+ 
+ 这里还有一个要注意的地方 
+ function max(num1, num2){
+    console.log(num1, arguments[0])
+    console.log(num2, arguments[1])
+    num1 = 44
+    console.log(num1, arguments[0])
+    arguments[0] = 66
+    console.log(num1, arguments[0])
+ }
+ max(1,2)
+ 结果 1 1 / 2 2 / 44 44 / 66 66
+ 
+ 如果加上ES5严格模式
+  function max(num1, num2){
+     "use strict"
+    console.log(num1, arguments[0])
+    console.log(num2, arguments[1])
+    num1 = 44
+    console.log(num1, arguments[0])
+    arguments[0] = 66
+    console.log(num1, arguments[0])
+ }
+ max(1,2)
+ 结果 1 1 / 2 2 / 44 1 / 44 66
+ 
  ```
