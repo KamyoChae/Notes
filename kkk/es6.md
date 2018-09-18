@@ -79,5 +79,23 @@ Person.call(window, "window")
  max(1,2)
  结果 1 1 / 2 2 / 44 1 / 44 66
  竟然与ES5严格模式一模一样的结果！！
+ 
+ 严格模式下arguments失效
+ 
   
  ```
+ #
+ ## 惰性求值
+ function getValue(){
+    console.log("hello")
+    return 99
+ }
+ 
+ function count (n, m = getValue()){
+    console.log(n + m)
+ }
+ 
+ count(1) // 结果是 hello 100
+ count(1, 1) // 结果是 2
+ 
+ 
