@@ -201,16 +201,5 @@ var ar = (name) => console.log(this.name)
 结果： 狗子
 原因： this指向window
 
-
-// 下面的要修改一下
-var name = "王尼玛"
-function fn(name){
-  this.name = "张全蛋"
-  print:function(){
-    console.log(this.name)
-  }
-}
-fn.call({name:"张三"})
- 
-结果
+  
 ```
