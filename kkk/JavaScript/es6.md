@@ -169,5 +169,26 @@ Person.call(window, "window")
  - 箭头函数没有this 
  - 箭头函数具有绑定this的能力
  - 箭头函数中绑定的this是离自己最近的非箭头函数作用域中的this
- 
- 
+ #
+ ### 箭头函数尿性：
+- 形参只有一个 可以不用括号
+- 语句只有一条 可以不用花括号
+- return 一个值 直接写出来
+```javascript
+let a = name => name
+
+等价于
+
+let a = function(name){
+  return name
+}
+```
+
+# 
+1. 箭头函数没有this
+1. 没有arguments
+1. 没有super(class)
+1. 没有prototype
+1. 不能被new操作符执行
+1. 箭头函数不能被作为构造函数 更多功能用于计算、数据流向等 方便js引擎优化代码
+1. 箭头函数具有this绑定能力
