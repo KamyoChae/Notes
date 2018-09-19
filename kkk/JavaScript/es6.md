@@ -143,3 +143,31 @@ Person.call(window, "window")
  结果输出 [1,2,3,3,3,3,2,2,2,2,2,2]
  ```
  
+ #
+ ## 箭头函数
+ ### 箭头函数具有绑定this的能力
+ this绑定分为4种
+ - 默认绑定（函数单纯执行 this指向window）
+ - 隐式绑定（谁调用 this指向谁）
+ - 显示绑定（apply call bind（硬绑定））
+ - new绑定 （权重最高）
+ 
+ ```javascript
+ var name = "window"
+ var obj = {
+  name:'obj',
+  
+  print:function(){
+    console.log(this.name)
+  }
+  obj.print()
+  var newPrint = obj.print.bind(window) //
+  var 
+ }
+ ```
+ 注意：
+ - 箭头函数没有this 
+ - 箭头函数具有绑定this的能力
+ - 箭头函数中绑定的this是离自己最近的非箭头函数作用域中的this
+ 
+ 
