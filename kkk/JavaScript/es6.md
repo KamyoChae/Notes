@@ -192,3 +192,24 @@ let a = function(name){
 1. 不能被new操作符执行
 1. 箭头函数不能被作为构造函数 更多功能用于计算、数据流向等 方便js引擎优化代码
 1. 箭头函数具有this绑定能力
+
+
+箭头函数绑定this
+```javascript
+var name = "狗子"
+var ar = (name) => console.log(this.name) 
+结果： 狗子
+原因： this指向window
+
+
+var name = "王尼玛"
+function fn(name){
+  this.name = "张全蛋"
+  print:function(){
+    console.log(this.name)
+  }
+}
+fn.call({name:"张三"})
+ 
+结果
+```
