@@ -200,6 +200,5 @@ var name = "狗子"
 var ar = (name) => console.log(this.name) 
 结果： 狗子
 原因： this指向window
-
   
 ```
