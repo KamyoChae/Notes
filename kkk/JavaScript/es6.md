@@ -87,6 +87,7 @@ Person.call(window, "window")
  ```
  #
  ## 惰性求值
+ ```javascript
  function getValue(){
     console.log("hello")
     return 99
@@ -98,7 +99,7 @@ Person.call(window, "window")
  
  count(1) // 结果是 hello 100
  count(1, 1) // 结果是 2
- 
+ ```
  
  #
  ## 不定参数
