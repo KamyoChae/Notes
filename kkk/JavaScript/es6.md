@@ -202,6 +202,7 @@ var ar = (name) => console.log(this.name)
 原因： this指向window
 
 
+// 下面的要修改一下
 var name = "王尼玛"
 function fn(name){
   this.name = "张全蛋"
