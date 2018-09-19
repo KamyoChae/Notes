@@ -100,3 +100,30 @@ Person.call(window, "window")
  count(1, 1) // 结果是 2
  
  
+ #
+ ## 不定参数
+ 
+ ```JavaScript
+ function count (arr, ...arg){
+    console.log(arg)
+    console.log(arguments)
+    for(var i = 0; i < arr.length; i++){
+        arr[i] = arg[i] + 1
+    }
+ }
+ count([], 1,2,3,4,5,6,7,8,9,10) 
+ 结果：[],  [],1,2,3,4,5,6,7,8,9,10
+ 
+ 
+ let arr = []
+ function fn(first, last, ...arg){
+    ...
+ }
+ fn(1,2,3,4,5,6,7,8,9,10)
+ 
+ 结果 没有报错
+ 但如果有多个arg或是arg放在中间 就会报错 
+ 
+ 小总结：
+ ```
+ 
