@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+
+    <div id="app"></div>
+    <script>
+        Vue.use(VueRouter);
+
+        var flag = true
+        var login = {
+ 
+            template: `
+              <div>
+                
+                这里是login界面 独占一行
+                <router-view></router-view>
+              </div>`,
+
+            created:function(){
+                flag = false
+            }
+        }
+        var rigister = {
+            template: `
+                <div>这里是register界面 独占一行register
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        var Index1 = {
+            template: `<div>这里是登录入口</div>`
+        }
+
+        var Pers = {
+            template: `<div>这里是个人资料入口</div>`
+        }
+
+        // 第一种加载路由的方式
+        // var router = new VueRouter({
+        //     // 这里可以直接传 也可以不传
+        //     // 4. 配置路由对象
+        //     routes: [
+        //         {
+        //             path: "/login", component: login,
+        //             children: [
+        //                 { name: "login.women", path: "women", component: women },
+        //                 { name: "login.man", path: "man", component: man }
+        //             ]
+        //         },
+        //         { path: "/rigister", component: rigister }
+        //     ] //login 是一个组件对象
+        // });
+        
+
+        // 路由追加 更为灵活地动态追加路由
+        var router = new VueRouter();
+
+        router.addRoutes([
+                {
+                    path: "/login", component: login,
+                    children: [
+                        { name: "login.index", path: "index", component: Index1 },
+                        { name: "login.pers", path: "pers", component: Pers ,meta:{
+                            isChecked:true
+                        }}
+                    ]
+                },
+                { path: "/rigister", component: rigister }
+            ]);
+
+       
+        router.beforeEach(function(to, from, next){
+
+            console.log(to)
+            console.log(from)
+            
+            if(to.name == "login.index" || to.path == "/"){
+                next()
+            }else{
+                if(flag){
+                    alert("请先登录！")
+                }else{
+                    next()
+                }
+            }
+
+        })
+
+        var App = {
+            template: `
+                <div>
+                    <router-link :to="{name:'login.index'}">登录</router-link>
+                    <router-link :to="{name:'login.pers'}">个人资料</router-link>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        new Vue({
+            el: '#app',
+
+            router: router, // 将配置好的路由对象关联到vue实例中
+            components: {
+                app: App
+            },
+            template: `<app />`,
+
+
+
+        })
+    </script>
+
+
+</body>
+
+</html>

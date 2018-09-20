@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>02</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app"></div>
+
+    <script>
+
+        // 注册全局组件
+
+        Vue.component("my-btn", {
+            template: `<button style="background:red">漂亮的按钮</button>`
+        })
+
+        // 创建子 声明子 使用子
+
+        // 创建子
+
+        var myHead = {
+            template: `
+                <div>
+                    <h1>这里是头部</h1>
+                    {{title}}
+                    <my-btn />
+                    <span>55555</span>
+                    
+                </div>
+            `, 
+            props: ["title"]
+        }
+        var myBody = {
+            template: `<h1>这里是身体<my-btn /></h1>`
+        }
+
+        var myFoot = {
+            template: `
+        <div>
+            <h1>这里是脚部</h1>
+            <button @click=" addd(5) ">点我</button><my-btn />
+        </div>    `,
+        methods: { 
+                addd: function (num) {
+                    alert(num++)
+                }
+            }
+        }
+
+        // 声明子
+
+        var mod = {
+            components: {
+                myhead: myHead,  // 可以这样写
+                "mybody": myBody, // 也可以这样写
+                "my-foot": myFoot // 推荐这样写
+            },
+            template: `
+                <div>
+                    <myhead :title=" xxx " />
+                    <mybody />
+                    <my-foot />
+                </div>
+              `,
+            data: function () {
+                return {
+                    xxx: "这是一个mod的title"
+                }
+            },
+
+            // 下面这样写会报错 The "data" option should be a function that returns a per-instance value in component definitions.
+            // 意为 “data”选项应该是一个在组件定义中返回每个实例值的函数。
+            // data:{
+            //     xxx: "这是一个mod的title"
+            // }
+        }
+
+        // 使用子
+        
+        new Vue({
+            el: "#app",
+            components: {
+                app: mod
+            },
+            template: "<app/>",
+        })
+
+    </script>
+</body>
+
+</html>

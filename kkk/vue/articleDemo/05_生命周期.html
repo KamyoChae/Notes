@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <script>
+        var App = {
+            template:`<h1>组件app</h1>`,
+            data:function(){
+                return {
+                    text:"hello world"
+                }
+            },
+
+            berforeCreat:function(){
+                // 组件创建之前
+            },
+            created:function(){
+                // 组件创建之后
+
+                // 可以操作数据 并且可以实现vue-html的影响 例如发起ajax请求获取数据
+            },
+
+
+            
+            beforeMount:function(){
+                // vue起作用 装载数据到dom之前
+            },
+            mounted:function(){
+                // 装载数据到dom之后 且只执行一次
+            },
+
+
+            // 一下两个基于数据改变而触发
+            // 可以用于测试、开发
+            beforeUpdate:function(){
+                // dom数据改变前 可以获取原dom
+            },
+            updated:function(){
+                // dom数据改变后 可以获取新dom
+            },
+
+
+            // 对应父组件 v-if false 销毁之前
+            beforeDestroy:function(){
+                // 销毁之前
+            },
+            destroyed:function(){
+                // 销毁之后
+            }
+
+        }
+
+
+
+
+    </script>
+
+
+</body>
+
+</html>

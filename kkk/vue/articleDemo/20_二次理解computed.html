@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{doMessage}}|now:{{now}}
+            <p>
+                <button @click="count">count</button>
+    </div>
+    <script>
+
+        new Vue({
+            el: "#app",
+            data: {
+                message: 50
+            },
+            computed: {
+                doMessage: {
+                    get() {
+
+                        return this.message * 2
+                    },
+                    set(newValue) {
+                        console.log(newValue)
+                        this.message = newValue
+                    }
+                },
+                now() {
+                    return Date.now()
+                },
+
+            },
+            methods: {
+                count() {
+                    this.doMessage = 999
+                }
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

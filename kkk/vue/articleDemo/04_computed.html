@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app"></div>
+    <script>
+
+        var myrate = {
+            template: `<h1>定义子</h1>`
+        }
+
+        var App = {
+            components: {
+                "my-rate": myrate
+            },
+            template: `<div>
+            <my-rate></my-rate>
+            <input type="text" v-model="n1" />
+            +
+            <input type="text" v-model="n2" />
+            *
+            <input type="text" v-model="rate" />
+            = {{result}}
+        </div>`,
+
+            data: function () {
+                return {
+                    n1: 0, n2: 0, rate: 0,
+                }
+            },
+
+            computed: {
+                result: function () {
+                    return ((this.n1 - 0) + (this.n2 - 0)) * this.rate
+                }
+            }
+
+        }
+
+        new Vue({
+            el: "#app",
+            components: {
+                app: App,
+            },
+            template: `<app />`
+        })
+
+    </script>
+</body>
+
+</html>

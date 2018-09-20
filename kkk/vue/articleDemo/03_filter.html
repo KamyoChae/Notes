@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    
+    <div id="app"></div>
+
+    <script>
+        
+        // 使用过滤器
+
+        var App = {
+            template:`
+                <div>
+                    <input type="text" v-model="myText" />
+                    {{myText | reverse}} 
+
+                    <hr>
+                    <input type="text" v-model="userW" />
+                    {{userW}}
+                    <hr>
+                    
+                    <button @click=" userD[0].name = 100 ">改变userD属性name</button>
+                </div>
+            `,
+            // 属性名 | 函数名 表示调用函数 将属性名作为实参传进函数中
+            // 将reverse参数传入reverse函数  reverse('英文版') 
+            
+            data:function (){
+                return {
+                    myText:"1289",
+                    userW:"",
+                    userD:[{name:456}]
+                }
+            },
+            // 使用watch监听简单类型的事件
+            watch:{
+
+
+                userW:function(newV, oldV){
+                    console.log(newV + "//" + oldV)
+                },
+
+                userD:{
+                    deep:true,
+                    handler:function(a){
+                         console.log(a)
+                        console.log("深度监视中")
+                    }
+                }
+
+                // userD:function(){
+                //     console.log("监视成功了")
+                // }
+            },
+
+            // 组建内的过滤器
+
+            // filters:{
+            //     // {{myText | reverse("args1")}} myText 对应dataStr args1对应args1  
+            //     reverse:function(dataStr,args1){
+            //         // 变字符串 翻转 拼接
+            //         return dataStr.split("").reverse().join("")
+            //     }
+            // }
+        }
+
+        // 全局的过滤器写法
+
+        Vue.filter("reverse", function(data){
+            return data.split("").reverse().join("")
+        })
+
+        new Vue({
+            el:"#app",
+            components:{
+                app:App,
+            },
+            template:`<app />`
+        })
+    
+    </script>
+</body>
+</html>

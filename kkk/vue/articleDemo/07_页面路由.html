@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <!-- <a href="#login">登录</a>
+    <a href="#register">注册</a>
+    <div id="content"></div>
+
+    <script>
+    // 前端路由核心原理：锚点值页面不跳转 innerHTML改变
+
+    // hashchange事件  url上面的部分锚点数据（#xxx）改变 可以触发到这个事件
+
+    var div = document.getElementById("content")
+
+    window.addEventListener("hashchange", function(){
+        switch(location.hash){
+            case "#login": div.innerHTML = "登录页面"; break;
+            case "#register": div.innerHTML = "注册页面"; break;
+        }
+    })
+    </script>
+     -->
+
+    <div id="app"></div>
+    <script>
+        Vue.use(VueRouter);
+
+        var login = {
+            template: `<div>登录界面</div>`
+        }
+        var router = new VueRouter({
+            // 这里可以直接传 也可以不传
+            // 4. 配置路由对象
+            routes: [{ path: "/login", component: login }] //login 是一个组件对象
+        });
+        var App = {
+            template: `
+                <div>
+                    <router-view></router-view>
+                </div>
+            `
+        }
+        new Vue({
+            el: '#app',
+
+            router: router, // 将配置好的路由对象关联到vue实例中
+            components: {
+                app: App
+            },
+            template: `<app />`
+
+        })
+    </script>
+
+
+</body>
+
+</html>

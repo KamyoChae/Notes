@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>vue1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="../node_modules/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+    </div>
+
+
+
+    <script>
+        new Vue({
+            el: "#app",
+            template: `
+                    <div>555{{text}}
+                        <span v-html="vhtml"></span>
+                        <span v-text="vtext"></span>
+                        <span v-if="flag">这里是flag=true</span>
+                        <input type="text" :value="inputText" >
+                        <button @click=" inputText='abs' ">{{text}}</button>
+                    </div>`,
+            data:  {
+                    text: "Halloween",
+                    vhtml: "<h1>v-html</h1>",
+                    vtext:"这里是text<h1>h1里面的文字</h1>",
+                    flag: false,
+                    inputText : "哈哈哈哈哈哈哈哈"
+            }
+        })
+    </script>
+</body>
+
+</html>
