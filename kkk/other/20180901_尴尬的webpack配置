@@ -1,0 +1,16 @@
+今天使用webpack的时候触发了个问题。
+
+我先是在一个中文文件夹下面npm init生成一个package.json
+
+然后安装webpack和webpack-cli
+接着运行webpack
+报错一堆说中文文件夹识别不了
+然后我把中文文件夹再改成英文的
+接着npm init,把package.json初始化一下
+
+接着报错了说找不到modul"webpack"
+
+然后我重新安装了webpack和
+webpack-cli,在这之前已经有了src文件夹，但是又出了个错说找不到入口文件src
+
+最后，我把原来的src文件夹删了重建一个，就好了
