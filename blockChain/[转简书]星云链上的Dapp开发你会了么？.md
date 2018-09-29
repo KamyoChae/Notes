@@ -10,9 +10,10 @@ https://xingyun.io/dapp/nasbank/
 
 第一步，Web页面制作。
 从这个页面我们可以获取到的信息有以下信息：
-1、页面的背景
-2、顶部的名称，logo，接下来的提示语NOTE:Please install WebExtensionWallet to use bank demo 是因为还没有安装星云钱包插件给个提示（什么是星云钱包插件？文章后面会说到）
-3、三个编辑框 ，三个按钮 （save, balance，takeout）
+
+1. 页面的背景
+2. 顶部的名称，logo，接下来的提示语NOTE:Please install WebExtensionWallet to use bank demo 是因为还没有安装星云钱包插件给个提示（什么是星云钱包插件？文章后面会说到）
+3. 三个编辑框 ，三个按钮 （save, balance，takeout）
 
 下面是对应的布局代码：
 ```javascript
@@ -24,9 +25,11 @@ https://xingyun.io/dapp/nasbank/
                 <img src="img/logo.png" alt="">
             </div>
         </div>
+        
+        <!-- 用来提示是否安装钱包 -->
         <div class="noExtension hide" id="noExtension">
             NOTE: Please install <a target="_blank" href="https://github.com/ChengOrangeJu/WebExtensionWallet">WebExtensionWallet</a>  to use bank demo
-        </div>
+        </div> 
         <div class="search">
             <input id="search_value" type="text">
             <button id=search>save</button>
@@ -62,26 +65,30 @@ https://xingyun.io/dapp/nasbank/
     <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
     <script>
 
-        var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay
-        var nebPay = new NebPay();
+        var NebPay = require("nebpay");     //https://github.com/nebulasio/nebPay 直接调用nebpay.js的sdk
+        var nebPay = new NebPay(); // 创建nebpay对象
 
         document.addEventListener("DOMContentLoaded", function() {
+            
+            // 在dom上下文生成后 将#search_value #search 这两个元素设置属性 disabled 表示不可用
             $("#search_value").attr("disabled",true)
             $("#search").attr("disabled",true)
 
-            console.log("web page loaded...")
-            setTimeout(checkNebpay,100);
+            console.log("web page loaded...") // 提示页面加载中
+            setTimeout(checkNebpay,100); // 大概100毫秒后 触发checkNebpay函数
         });
 
         function checkNebpay() {
-            console.log("check nebpay")
+            console.log("check nebpay") // 提示触发nebpay函数
 
             //to check if the extension is installed
             //if the extension is installed, var "webExtensionWallet" will be injected in to web page
-            if(typeof(webExtensionWallet) === "undefined"){
+            if(typeof(webExtensionWallet) === "undefined"){ // WebExtensionWallet 星云钱包插件
                 //alert ("Extension wallet is not installed, please install it first.")
-                $("#noExtension").removeClass("hide")
+                $("#noExtension").removeClass("hide") // 如果插件不存在 即浏览器没有安装星云钱包 就会提示装一个钱包
             }else{
+            
+                // 如果钱包已经安装了 那么这两个输入框可编辑
                 $("#search_value").attr("disabled",false)
                 $("#search").attr("disabled",false)
             }
@@ -172,9 +179,9 @@ https://xingyun.io/dapp/nasbank/
 </body>
 ```
 其中我们最需要关注的有以下几点：
-1、WebExtensionWallet 星云钱包插件
-2、dappAddress 这个是合约地址，到时部署好了之后修改为你自己的就可以了
-3、neb.js 下面会说到 调用智能合约时用到
+1. WebExtensionWallet 星云钱包插件
+2. dappAddress 这个是合约地址，到时部署好了之后修改为你自己的就可以了
+3. neb.js 下面会说到 调用智能合约时用到
 
 #
 第二步，编写智能合约
