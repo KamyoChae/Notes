@@ -60,8 +60,11 @@ https://xingyun.io/dapp/nasbank/
             <button id="push">submit</button>
             </div>
     </div>
-    <script src=lib/jquery-3.3.1.min.js></script>
+
+    <script src=lib/jquery-3.3.1.min.js></script> 
+
     <script src=lib/nebPay.js></script>
+
     <script src=lib/bootstrap-4.0.0-dist/js/bootstrap.min.js></script>
     <script>
 
@@ -80,7 +83,7 @@ https://xingyun.io/dapp/nasbank/
 
         function checkNebpay() {
             console.log("check nebpay") // 提示触发nebpay函数
-
+            // 这个函数是用来判断用户有没有安装星云钱包的
             //to check if the extension is installed
             //if the extension is installed, var "webExtensionWallet" will be injected in to web page
             if(typeof(webExtensionWallet) === "undefined"){ // WebExtensionWallet 星云钱包插件
@@ -88,9 +91,9 @@ https://xingyun.io/dapp/nasbank/
                 $("#noExtension").removeClass("hide") // 如果插件不存在 即浏览器没有安装星云钱包 就会提示装一个钱包
             }else{
             
-                // 如果钱包已经安装了 那么这两个输入框可编辑
-                $("#search_value").attr("disabled",false)
-                $("#search").attr("disabled",false)
+                // 如果钱包已经安装了 那么这两个元素可编辑
+                $("#search_value").attr("disabled",false) // 输入框
+                $("#search").attr("disabled",false) // 按钮
             }
         }
 
@@ -101,14 +104,18 @@ https://xingyun.io/dapp/nasbank/
 
     // 存钱功能
     $("#search").click(function(){
+    
+        // 当点击search 按钮的时候就会触发一次这个事件
         
+        // 输入框按钮 
         console.log("********* call smart contract by \"call\" *****************")
 
-        var to = dappAddress;
-        var value = $("#search_value").val() // 搜索框内的值
-        var callFunction = "save"
-        var callArgs = "[" + value + "]"
+        var to = dappAddress; // 将合约地址存到这来
+        var value = $("#search_value").val() // 获取搜索框内的值
+        var callFunction = "save" // 定义个字符串
+        var callArgs = "[" + value + "]" // 拼接搜索框里面的值 加上外中括号
 
+        // 接下来用nebpay封装好的接口调用合约
         nebPay.call(to, value, callFunction, callArgs,{    //使用nebpay的call接口去调用合约,
             callback: null
             }
@@ -121,11 +128,12 @@ https://xingyun.io/dapp/nasbank/
 
         console.log("********* call smart contract by \"call\" *****************")
   
-        var to = dappAddress;
-        var value = "0"
-        var callFunction = "balanceOf"
-        var callArgs = ""
+        var to = dappAddress; // 获取合约地址
+        var value = "0" // 初始化值
+        var callFunction = "balanceOf" // 初始化
+        var callArgs = "" // 初始化
 
+        //  
         nebPay.simulateCall(to, value, callFunction, callArgs,{    //使用nebpay的call接口去调用合约,
             callback: balanceCallback
             }
