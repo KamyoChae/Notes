@@ -66,7 +66,7 @@ submit.onclick = function (e) {
 
  6、校验返回的数据。
     xhr.onreadystatechange = function(){
-        if(xhr.readystate == 4){
+        if(xhr.readyState == 4){
             if(xhr.status == 200){
                 console.log('响应成功')
             }
@@ -85,7 +85,7 @@ submit.onclick = function (e) {
  xhr.open('GET', 'test.php', true);
  xhr.send();
  xhr.onreadystatechange = function(){
-     if(xhr.readystate == 4){
+     if(xhr.readyState == 4){
          if(xhr.status == 200){
              console.log('响应成功')
          }
@@ -109,7 +109,7 @@ post请求方式：
  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
  xhr.send('name=kam&age=18');
  xhr.onreadystatechange = function(){
-     if(xhr.readystate == 4){
+     if(xhr.readyState == 4){
          if(xhr.status == 200){
              console.log('响应成功')
          }
@@ -129,7 +129,7 @@ function ajaxFun(method, url, data, callback, flag) {
     }
 
      xhr.onreadystatechange = function(){
-        if(xhr.readystate == 4){
+        if(xhr.readyState == 4){
             if(xhr.status == 200){
                 callback(xhr.responseText)
             }else{
