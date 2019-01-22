@@ -74,6 +74,7 @@ submit.onclick = function (e) {
     }
 
     把思路整合成代码：
+ ```
  var xhr = null;
  if(window.XMLHttpRequest){
      xhr = new XMLHttpRequest();
@@ -90,6 +91,7 @@ submit.onclick = function (e) {
          }
      }
  }
+ ```
 注意：
 GET请求可以把数据写在请求的地址后面，例如
  xhr.open('GET', 'test.php?name=kam&age=18', true);
@@ -102,6 +104,7 @@ POST请求不能这么做
 xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 
 post请求方式：
+```
  xhr.open('POST', 'test.php', true);
  xhr.setRequestHeader("Content-type","application/x-www-form-urlencoded");
  xhr.send('name=kam&age=18');
@@ -112,8 +115,9 @@ post请求方式：
          }
      }
  }
-
+```
 对两种请求方式进行封装，造一个ajax轮子：
+```
 function ajaxFun(method, url, data, callback, flag) {
 
     // method 请求方式 url 请求地址 data 传输的数据 callback 回调函数 flag 是否异步发起
@@ -144,7 +148,7 @@ function ajaxFun(method, url, data, callback, flag) {
     }
 }
 
-
+```
 注释及拓展：
 
 action：请求的地址
